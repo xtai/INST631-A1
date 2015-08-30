@@ -44,20 +44,36 @@ body.tie hr {
 body.o-wins h1,
 body.x-wins h1,
 body.o-wins p,
-body.x-wins p {
-  color: #fff;
+body.x-wins p,
+body.o-wins a,
+body.x-wins a {
+  color: #fff !important;
 }
 
 #header-desc {
   line-height: 32px;
   height: 35px;
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: -10px;
   font-weight: 200;
 }
 
 #header-restart-btn {
   font-weight: 200;
+}
+
+#footer {
+  color: #666;
+}
+
+#credits {
+  margin-top: -10px;
+  font-weight: 200;
+  color: #ccc;
+}
+
+#credits a {
+  color: #ccc;
 }
 
 .glyphicon-repeat {
@@ -80,6 +96,19 @@ body.x-wins p {
   margin: 0;
 }
 
+.option-x,
+.option-o {
+  display: none;
+}
+
+.option-x {
+  z-index: 0;
+}
+
+.option-o {
+  z-index: 81;
+}
+
 .cell {
   width: 140px;
   height: 140px;
@@ -96,6 +125,8 @@ body.x-wins p {
   line-height: 140px;
   font-weight: 200;
   cursor: default;
+  width: 140px;
+  height: 140px;
 }
 
 .cell > .option-x,
@@ -133,6 +164,8 @@ body.x-wins p {
   font-size: 70px;
   line-height: 70px;
   color: #f3f3f3;
+  width: 140px;
+  height: 70px;
 }
 
 .starter:hover > .option-x:hover,
@@ -143,10 +176,126 @@ body.x-wins p {
   cursor: pointer;
 }
 
-.disabled > .option-x,
-.disabled > .option-o {
-  color: #f3f3f3 !important;
-  cursor: default !important;
-  background-color: #f3f3f3 !important;
+
+/* Bootstrap Botton Color Override */
+
+
+/*
+btn-primary
+#122b40 #2d2f3f
+#204d74 #515572
+#286090 #656a8e
+#2e6da4 #777da7
+#337ab7 #8288b7
+*/
+
+.btn-primary:focus,
+.btn-primary.focus {
+  background-color: #656a8e;
+  border-color: #2d2f3f;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background-color: #656a8e;
+  border-color: #515572;
+}
+
+.btn-primary,
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.open > .dropdown-toggle.btn-primary:hover,
+.btn-primary:active:focus,
+.btn-primary.active:focus,
+.open > .dropdown-toggle.btn-primary:focus,
+.btn-primary:active.focus,
+.btn-primary.active.focus,
+.open > .dropdown-toggle.btn-primary.focus {
+  background-color: #515572;
+  border-color: #2d2f3f;
+}
+
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled.focus,
+.btn-primary[disabled].focus,
+fieldset[disabled] .btn-primary.focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  background-color: #8288b7;
+  border-color: #777da7;
+}
+
+
+/*
+btn-danger
+#761c19 #a0332b
+#ac2925 #d6463b
+#c9302c #f45044
+#d43f3a #fe5f55
+#d9534f #ff746b
+*/
+
+.btn-danger:focus,
+.btn-danger.focus {
+  background-color: #f45044;
+  border-color: #a0332b;
+}
+
+.btn-danger:hover,
+.btn-danger:active,
+.btn-danger.active,
+.open > .dropdown-toggle.btn-danger {
+  background-color: #f45044;
+  border-color: #d6463b;
+}
+
+.btn-danger:active:hover,
+.btn-danger.active:hover,
+.open > .dropdown-toggle.btn-danger:hover,
+.btn-danger:active:focus,
+.btn-danger.active:focus,
+.open > .dropdown-toggle.btn-danger:focus,
+.btn-danger:active.focus,
+.btn-danger.active.focus,
+.open > .dropdown-toggle.btn-danger.focus {
+  background-color: #d6463b;
+  border-color: #a0332b;
+}
+
+.btn-danger,
+.btn-danger.disabled,
+.btn-danger[disabled],
+fieldset[disabled] .btn-danger,
+.btn-danger.disabled:hover,
+.btn-danger[disabled]:hover,
+fieldset[disabled] .btn-danger:hover,
+.btn-danger.disabled:focus,
+.btn-danger[disabled]:focus,
+fieldset[disabled] .btn-danger:focus,
+.btn-danger.disabled.focus,
+.btn-danger[disabled].focus,
+fieldset[disabled] .btn-danger.focus,
+.btn-danger.disabled:active,
+.btn-danger[disabled]:active,
+fieldset[disabled] .btn-danger:active,
+.btn-danger.disabled.active,
+.btn-danger[disabled].active,
+fieldset[disabled] .btn-danger.active {
+  background-color: #ff746b;
+  border-color: #fe5f55;
 }
 

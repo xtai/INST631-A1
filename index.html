@@ -19,37 +19,59 @@
     <div class="game">
       <div class="row">
         <div class="col-xs-3 cell" id="cell-0-0">
+          <div class="option-x">X</div>
+          <div class="option-o">O</div>
         </div>
         <div class="col-xs-3 cell" id="cell-1-0">
+          <div class="option-x">X</div>
+          <div class="option-o">O</div>
         </div>
         <div class="col-xs-3 cell" id="cell-2-0">
+          <div class="option-x">X</div>
+          <div class="option-o">O</div>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-3 cell" id="cell-0-1">
+          <div class="option-x">X</div>
+          <div class="option-o">O</div>
         </div>
         <div class="col-xs-3 cell" id="cell-1-1">
+          <div class="option-x">X</div>
+          <div class="option-o">O</div>
         </div>
         <div class="col-xs-3 cell" id="cell-2-1">
+          <div class="option-x">X</div>
+          <div class="option-o">O</div>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-3 cell" id="cell-0-2">
+          <div class="option-x">X</div>
+          <div class="option-o">O</div>
         </div>
         <div class="col-xs-3 cell" id="cell-1-2">
+          <div class="option-x">X</div>
+          <div class="option-o">O</div>
         </div>
         <div class="col-xs-3 cell" id="cell-2-2">
+          <div class="option-x">X</div>
+          <div class="option-o">O</div>
         </div>
       </div>
     </div>
     <hr />
     <p class="text-center" id="footer">Xiaoyu Tai - INST 631 - Assignment 1</p>
+    <p class="text-center" id="credits">Credit: <a href="http://getbootstrap.com/" title="HTML/CSS/JS framework">Bootstrap</a>, <a href="https://jquery.com/" title="a JavaScript Library">jQuery</a>, <a href="https://coolors.co/" title="A color schemes generator">coolors.co</a></p>
   </div>
   <!-- JavaScript -->
   <script src="dist/js/jquery-1.11.3.min.js"></script>
   <script src="game.js"></script>
   <script type="text/javascript">
-  new Game();
+  var game = new Game();
+  $(document).ready(function() {
+    game.on();
+  });
 
   </script>
 </body>
