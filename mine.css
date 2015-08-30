@@ -17,11 +17,8 @@ div {
   -o-transition-: all 0.1s;
 }
 
-/* Body - 3 status */
 
-body {
-  padding-top: 20px;
-}
+/* Body - 3 status */
 
 body.o-wins {
   background-color: #fe5f55;
@@ -78,6 +75,7 @@ body.x-wins p {
   font-size: 124px;
   line-height: 140px;
   font-weight: 200;
+  cursor: default;
 }
 
 .cell > .option-x,

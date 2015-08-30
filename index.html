@@ -7,58 +7,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tic-tac-toe - Xiaoyu - INST 631</title>
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="mine.css">
 </head>
 
 <body>
   <div class="container">
-    <h1 class="text-center">Get Ready!</h1>
-    <p class="text-center">tststst</p>
+    <h1 class="text-center" id="header">Tic-Tac-Toe</h1>
+    <p class="text-center">Welcome!</p>
     <hr />
     <div class="game">
       <div class="row">
-        <div class="col-xs-3 cell o-wins">
-          <div class="option-o">O</div>
+        <div class="col-xs-3 cell" id="cell-0-0">
         </div>
-        <div class="col-xs-3 cell x-wins">
-          <div class="option-x">X</div>
+        <div class="col-xs-3 cell" id="cell-1-0">
         </div>
-        <div class="col-xs-3 cell starter">
-          <div class="option-x">X</div>
-          <div class="option-o">O</div>
+        <div class="col-xs-3 cell" id="cell-2-0">
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-3 cell">
-          <div class="option-o">O</div>
+        <div class="col-xs-3 cell" id="cell-0-1">
         </div>
-        <div class="col-xs-3 cell">
-          <div class="option-x">X</div>
+        <div class="col-xs-3 cell" id="cell-1-1">
         </div>
-        <div class="col-xs-3 cell starter">
-          <div class="option-x">X</div>
-          <div class="option-o">O</div>
+        <div class="col-xs-3 cell" id="cell-2-1">
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-3 cell empty">
-          <div class="option-o">O</div>
+        <div class="col-xs-3 cell" id="cell-0-2">
         </div>
-        <div class="col-xs-3 cell empty">
-          <div class="option-x">X</div>
+        <div class="col-xs-3 cell" id="cell-1-2">
         </div>
-        <div class="col-xs-3 cell empty disabled">
-          <div class="option-o">O</div>
+        <div class="col-xs-3 cell" id="cell-2-2">
         </div>
       </div>
     </div>
     <hr />
-    <p class="text-center">Xiaoyu Tai - INST 631 - Assignment 1</p>
+    <p class="text-center" id="footer">Xiaoyu Tai - INST 631 - Assignment 1</p>
   </div>
   <!-- JavaScript -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="dist/js/jquery-1.11.3.min.js"></script>
+  <script src="game.js"></script>
+  <script type="text/javascript">
+  new Game();
+
+  </script>
 </body>
 
 </html>
