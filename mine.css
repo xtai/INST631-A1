@@ -1,43 +1,134 @@
+/*
+Tic-tac-toe
+INST 631 - Assignment 1
+Xiaoyu Tai
+08/29/2015
+*/
+
+
+/* CSS Animations */
+
+body,
+a,
+div {
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  -o-transition-: all 0.1s;
+}
+
+/* Body - 3 status */
+
+body {
+  padding-top: 20px;
+}
+
+body.o-wins {
+  background-color: #fe5f55;
+}
+
+body.x-wins {
+  background-color: #777da7;
+}
+
+body.tie {
+  background-color: #cacaca;
+}
+
+body.o-wins hr,
+body.x-wins hr {
+  border-top: 1px solid #ddd;
+}
+
+body.tie hr {
+  border-top: 1px solid #999;
+}
+
+body.o-wins h1,
+body.x-wins h1,
+body.o-wins p,
+body.x-wins p {
+  color: #fff;
+}
+
 .game {
   height: 440px;
   width: 440px;
-  background-color: #666;
+  background-color: #6f6f6f;
+  margin: 0 auto;
 }
+
 .game > .row {
   padding: 0;
   margin: 0;
 }
+
 .cell {
   width: 140px;
   height: 140px;
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   margin-left: 5px;
   margin-top: 5px;
   padding: 0;
 }
 
 .cell > .option-x,
-.cell > .option-o{
+.cell > .option-o {
   text-align: center;
   font-size: 124px;
   line-height: 140px;
   font-weight: 200;
 }
 
-.cell > .option-x{
-  color: #777DA7;
-}
-.cell > .option-o{
-  color: #FE5F55;
+.cell > .option-x,
+.starter:hover > .option-x,
+.empty:hover > .option-x {
+  color: #777da7;
 }
 
-.active > .option-x,
-.active > .option-o{
-  font-size: 62px;
+.cell > .option-o,
+.starter:hover > .option-o,
+.empty:hover > .option-o {
+  color: #fe5f55;
+}
+
+.cell.x-wins {
+  background-color: #777da7;
+}
+
+.cell.o-wins {
+  background-color: #fe5f55;
+}
+
+.cell.x-wins .option-x,
+.cell.o-wins .option-o {
+  color: #fff;
+}
+
+.empty > .option-x,
+.empty > .option-o {
+  color: #f3f3f3;
+}
+
+.starter > .option-x,
+.starter > .option-o {
+  font-size: 70px;
   line-height: 70px;
+  color: #f3f3f3;
 }
 
-.active > .hover.option-x,
-.active > .hover.option-o{
-  background-color: #333;
+.starter:hover > .option-x:hover,
+.starter:hover > .option-o:hover,
+.empty:hover > .option-x:hover,
+.empty:hover > .option-o:hover {
+  background-color: #3f3f3f;
+  cursor: pointer;
 }
+
+.disabled > .option-x,
+.disabled > .option-o {
+  color: #f3f3f3 !important;
+  cursor: default !important;
+  background-color: #f3f3f3 !important;
+}
+
