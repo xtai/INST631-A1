@@ -13,6 +13,7 @@ function Game() {
 }
 
 Game.prototype.start = function() {
+  this.ui.start();
   this.ui.update(this.table.cells, null);
 };
 
@@ -50,6 +51,7 @@ Table.prototype.getEmptyCells = function() {
 function UI() {
   this.option_x = '<div class=\"option-x\">X</div>';
   this.option_o = '<div class=\"option-o\">O</div>';
+  this.option_xo = '<div class=\"option-x\" onclick=\"console.log(\'x\')\">X</div> <div class = \"option-o\" onclick=\"console.log(\'o\')\">O</div>'
 }
 
 UI.prototype.update = function(cells, next_turn) {
@@ -79,28 +81,48 @@ UI.prototype.updateCell = function(cell, next_turn) {
     $('#cell-' + cell.x + '-' + cell.y).html(this.option_o);
   } else if (cell.letter == null && next_turn == null) {
     $('#cell-' + cell.x + '-' + cell.y).removeClass('empty disabled').addClass('starter');
-    $('#cell-' + cell.x + '-' + cell.y).html(this.option_x + this.option_o);
+    $('#cell-' + cell.x + '-' + cell.y).html(this.option_xo);
+  };
+};
+
+UI.prototype.start = function() {
+  $('body').removeClass();
+  $('#header').html('Tic-Tac-Toe');
+  $('#header-desc').html('Let\'s start!');
+  $('.cell').html();
+};
+
+UI.prototype.next = function(next_turn) {
+  if (next_turn == 'x') {
+    $('#header-desc').html('X\'s turn!');
+  } else if (next_turn == 'o') {
+    $('#header-desc').html('O\'s turn!');
   };
 };
 
 UI.prototype.end = function(player, winning_cells, empty_cells) {
-  var restart = '<a href=\"\">Restart</a>'
+  var restart_btn = '<a class=\"btn btn-default\" href=\"\" id=\"header-restart-btn\"><span class=\"glyphicon glyphicon-repeat\" aria-hidden=\"true\"></span> Start Over</a>'
   for (var i = 0; i < empty_cells.length; i++) {
     $('#cell-' + empty_cells[i].x + '-' + empty_cells[i].y).removeClass('empty starter').addClass('disabled');
   };
   if (player == null) {
     $('body').removeClass().addClass('tie');
-    $('#header').html('It\'s a tie! ' + restart);
+    $('#header').html('It\'s a tie!');
+    $('header-desc').html(restart_btn);
   } else if (player == 'x') {
     $('body').removeClass().addClass('x-wins');
-    $('#header').html('X wins! ' + restart);
+    $('header-desc').html(restart_btn);
+    $('#header-restart-btn').removeClass('btn-default').addClass('btn-primary');
+    $('#header').html('X wins!');
     for (var i = 0; i < winning_cells.length; i++) {
       var cell = winning_cells[i];
       $('#cell-' + cell.x + '-' + cell.y).removeClass('empty starter disabled').addClass('x-wins');
     };
   } else if (player == 'o') {
     $('body').removeClass().addClass('o-wins');
-    $('#header').html('O wins! ' + restart);
+    $('#header').html('O wins!');
+    $('header-desc').html(restart_btn);
+    $('#header-restart-btn').removeClass('btn-default').addClass('btn-adnger');
     for (var i = 0; i < winning_cells.length; i++) {
       var cell = winning_cells[i];
       $('#cell-' + cell.x + '-' + cell.y).removeClass('empty starter disabled').addClass('o-wins');

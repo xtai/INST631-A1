@@ -48,6 +48,26 @@ body.x-wins p {
   color: #fff;
 }
 
+#header-desc {
+  line-height: 32px;
+  height: 35px;
+  font-size: 16px;
+  margin-bottom: -10px;
+  font-weight: 200;
+}
+
+#header-restart-btn {
+  font-weight: 200;
+}
+
+.glyphicon-repeat {
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+
 .game {
   height: 440px;
   width: 440px;
