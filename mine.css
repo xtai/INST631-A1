@@ -1,5 +1,43 @@
 .game {
-  height: 400px;
-  width: 400px;
-  background-color: #ACC;
+  height: 440px;
+  width: 440px;
+  background-color: #666;
+}
+.game > .row {
+  padding: 0;
+  margin: 0;
+}
+.cell {
+  width: 140px;
+  height: 140px;
+  background-color: #F3F3F3;
+  margin-left: 5px;
+  margin-top: 5px;
+  padding: 0;
+}
+
+.cell > .option-x,
+.cell > .option-o{
+  text-align: center;
+  font-size: 124px;
+  line-height: 140px;
+  font-weight: 200;
+}
+
+.cell > .option-x{
+  color: #777DA7;
+}
+.cell > .option-o{
+  color: #FE5F55;
+}
+
+.active > .option-x,
+.active > .option-o{
+  font-size: 62px;
+  line-height: 70px;
+}
+
+.active > .hover.option-x,
+.active > .hover.option-o{
+  background-color: #333;
 }
