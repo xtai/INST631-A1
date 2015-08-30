@@ -18,27 +18,19 @@ div {
 }
 
 
-/* Body - 3 status */
-
-body.o-wins {
-  background-color: #fe5f55;
-}
+/* Body Colors - 3 status */
 
 body.x-wins {
   background-color: #777da7;
 }
 
-body.tie {
-  background-color: #cacaca;
+body.o-wins {
+  background-color: #fe5f55;
 }
 
 body.o-wins hr,
 body.x-wins hr {
   border-top: 1px solid #ddd;
-}
-
-body.tie hr {
-  border-top: 1px solid #999;
 }
 
 body.o-wins h1,
@@ -49,6 +41,22 @@ body.o-wins a,
 body.x-wins a {
   color: #fff !important;
 }
+
+body.tie {
+  background-color: #cacaca;
+}
+
+body.tie hr {
+  border-top: 1px solid #999;
+}
+
+body.tie #credits,
+body.tie #credits a {
+  color: #999;
+}
+
+
+/* header and footer */
 
 #header-desc {
   line-height: 32px;
@@ -84,6 +92,9 @@ body.x-wins a {
   transform: scale(-1, 1);
 }
 
+
+/* Gird and style */
+
 .game {
   height: 440px;
   width: 440px;
@@ -96,17 +107,14 @@ body.x-wins a {
   margin: 0;
 }
 
-.option-x,
-.option-o {
-  display: none;
-}
-
 .option-x {
   z-index: 0;
+  display: none;
 }
 
 .option-o {
   z-index: 81;
+  display: none;
 }
 
 .cell {
@@ -182,11 +190,11 @@ body.x-wins a {
 
 /*
 btn-primary
-#122b40 #2d2f3f
-#204d74 #515572
-#286090 #656a8e
-#2e6da4 #777da7
-#337ab7 #8288b7
+#122b40 -> #2d2f3f
+#204d74 -> #515572
+#286090 -> #656a8e
+#2e6da4 -> #777da7
+#337ab7 -> #8288b7
 */
 
 .btn-primary:focus,
@@ -242,11 +250,11 @@ fieldset[disabled] .btn-primary.active {
 
 /*
 btn-danger
-#761c19 #a0332b
-#ac2925 #d6463b
-#c9302c #f45044
-#d43f3a #fe5f55
-#d9534f #ff746b
+#761c19 -> #a0332b
+#ac2925 -> #d6463b
+#c9302c -> #f45044
+#d43f3a -> #fe5f55
+#d9534f -> #ff746b
 */
 
 .btn-danger:focus,

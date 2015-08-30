@@ -10,6 +10,7 @@ function Game() {
   this.ui = new UI();
   this.controller = new Controller(this.ui, this.table);
   this.init();
+  this.on();
 }
 
 Game.prototype.init = function() {
@@ -33,6 +34,10 @@ Game.prototype.on = function() {
       console.log(p + "!");
     };
   });
+};
+
+Game.prototype.restart = function() {
+  location.reload();
 };
 
 function Table() {
