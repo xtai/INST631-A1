@@ -30,7 +30,7 @@ Game.prototype.on = function() {
     ui.next(next_turn);
     var p = controller.if_wins(cell)
     if (p != null) {
-      console.log(p + " wins!");
+      console.log(p + "!");
     };
   });
 };
@@ -129,7 +129,7 @@ UI.prototype.end = function(player, winning_cells, empty_cells) {
     $('#cell-' + empty_cells[i].x + '-' + empty_cells[i].y + ' .option-x').hide();
     $('#cell-' + empty_cells[i].x + '-' + empty_cells[i].y + ' .option-o').hide();
   };
-  if (player == null) {
+  if (player == 'tie') {
     $('body').removeClass().addClass('tie');
     $('#header').html('It\'s a tie!');
     $('#header-desc').html(restart_btn);
@@ -190,7 +190,7 @@ Controller.prototype.if_wins = function(last_cell) {
   var player = this.table.cells[x][y];
   var all = this.table.cells;
   // First, check the diagonal, if the last cell was in it.
-  if (x == y || (x + y) == 2) {
+  if (x == y || (parseInt(x) + parseInt(y)) == 2) {
     if (player == all[0][0] && all[0][0] == all[1][1] && all[1][1] == all[2][2]) {
       this.ui.end(player, [{
         x: 0,
@@ -243,7 +243,15 @@ Controller.prototype.if_wins = function(last_cell) {
     }], this.table.getEmptyCells());
     return player;
   };
+  for (var i = 0; i < all.length; i++) {
+    for (var j = 0; j < all.length; j++) {
+      if (all[i][j] == null) {
+        return null;
+      }
+    };
+  };
   // return null if no one wins
-  return null;
+  this.ui.end("tie", [], []);
+  return "tie";
 };
 
