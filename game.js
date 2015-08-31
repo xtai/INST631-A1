@@ -6,33 +6,26 @@
  */
 
 function Game() {
-  this.table = new Table();
+  this.data_storage = new DataStorage();
   this.ui = new UI();
-  this.controller = new Controller(this.ui, this.table);
-  this.init();
+  this.controller = new Controller(this.ui, this.data_storage);
   this.on();
 }
 
-Game.prototype.init = function() {
-  this.ui.init();
-  this.ui.updateAll(this.table.cells, null);
-};
-
 Game.prototype.on = function() {
-  this.controller.monitor(function(cell, ui, table, controller) {
-    console.log(cell);
+  this.ui.init();
+  this.ui.updateAll(this.data_storage.cells, null);
+  this.controller.monitor(function(cell, ui, data_storage, controller) {
+    // console.log(cell);
     if (cell.letter == 'x') {
-      next_turn = 'o';
+      var next_turn = 'o';
     } else {
-      next_turn = 'x';
+      var next_turn = 'x';
     }
-    table.cells[cell.x][cell.y] = cell.letter;
-    ui.updateAll(table.cells, next_turn);
+    data_storage.cells[cell.x][cell.y] = cell.letter;
+    ui.updateAll(data_storage.cells, next_turn);
     ui.next(next_turn);
-    var p = controller.if_wins(cell)
-    if (p != null) {
-      console.log(p + "!");
-    };
+    console.log('update: ' + controller.if_wins(cell));
   });
 };
 
@@ -40,7 +33,7 @@ Game.prototype.restart = function() {
   location.reload();
 };
 
-function Table() {
+function DataStorage() {
   this.cells = [
     [null, null, null],
     [null, null, null],
@@ -48,15 +41,7 @@ function Table() {
   ];
 }
 
-Table.prototype.getLetter = function(position) {
-  return this.cells[position.x][position.y];
-};
-
-Table.prototype.setLetter = function(position, letter) {
-  this.cells[position.x][position.y] = letter;
-};
-
-Table.prototype.getEmptyCells = function() {
+DataStorage.prototype.getEmptyCells = function() {
   var r = [];
   for (var i = 0; i < this.cells.length; i++) {
     for (var j = 0; j < this.cells[i].length; j++) {
@@ -89,14 +74,11 @@ UI.prototype.updateCell = function(cell, next_turn) {
   // console.log(cell);
   if (cell.letter == 'x') {
     $('#cell-' + cell.x + '-' + cell.y).removeClass('empty starter');
-    $('#cell-' + cell.x + '-' + cell.y + ' .option-o').css("height", "0px"); // details: just for a better animation :P
-    $('#cell-' + cell.x + '-' + cell.y + ' .option-x').show();
     $('#cell-' + cell.x + '-' + cell.y + ' .option-o').hide();
+    $('#cell-' + cell.x + '-' + cell.y + ' .option-x').show();
   } else if (cell.letter == 'o') {
-    $('#cell-' + cell.x + '-' + cell.y + ' .option-x').css("color", "#f3f3f3"); // details: a better animation!
     $('#cell-' + cell.x + '-' + cell.y).removeClass('empty starter');
-    $('#cell-' + cell.x + '-' + cell.y + ' .option-x').css("height", "0px");
-    $('#cell-' + cell.x + '-' + cell.y + ' .option-x').css("font-size", "0px");
+    $('#cell-' + cell.x + '-' + cell.y + ' .option-x').css("color", "#f3f3f3").css("height", "0px").css("font-size", "0px"); // just for a better animation :P
     $('#cell-' + cell.x + '-' + cell.y + ' .option-o').show();
   } else if (cell.letter == null && next_turn == 'x') {
     $('#cell-' + cell.x + '-' + cell.y).removeClass('starter').addClass('empty');
@@ -159,14 +141,14 @@ UI.prototype.end = function(player, winning_cells, empty_cells) {
   };
 };
 
-function Controller(ui, table) {
+function Controller(ui, data_storage) {
   this.ui = ui;
-  this.table = table;
+  this.data_storage = data_storage;
 }
 
 Controller.prototype.monitor = function(callback) {
   var ui = this.ui;
-  var table = this.table;
+  var data_storage = this.data_storage;
   var controller = this;
   $('.option-o, .option-x').click(function() {
     if ($(this).parent().hasClass('starter') || $(this).parent().hasClass('empty')) {
@@ -182,7 +164,7 @@ Controller.prototype.monitor = function(callback) {
       };
       // console.log(new_cell);
       if (typeof callback === "function") {
-        callback(new_cell, ui, table, controller);
+        callback(new_cell, ui, data_storage, controller);
       }
     };
   });
@@ -192,8 +174,8 @@ Controller.prototype.if_wins = function(last_cell) {
   var x = last_cell.x;
   var y = last_cell.y;
   var l = last_cell.l;
-  var player = this.table.cells[x][y];
-  var all = this.table.cells;
+  var player = this.data_storage.cells[x][y];
+  var all = this.data_storage.cells;
   // First, check the diagonal, if the last cell was in it.
   if (x == y || (parseInt(x) + parseInt(y)) == 2) {
     if (player == all[0][0] && all[0][0] == all[1][1] && all[1][1] == all[2][2]) {
@@ -206,7 +188,7 @@ Controller.prototype.if_wins = function(last_cell) {
       }, {
         x: 2,
         y: 2
-      }], this.table.getEmptyCells());
+      }], this.data_storage.getEmptyCells());
       return player;
     } else if (player == all[0][2] && all[0][2] == all[1][1] && all[1][1] == all[2][0]) {
       this.ui.end(player, [{
@@ -218,7 +200,7 @@ Controller.prototype.if_wins = function(last_cell) {
       }, {
         x: 2,
         y: 0
-      }], this.table.getEmptyCells());
+      }], this.data_storage.getEmptyCells());
       return player;
     };
   };
@@ -233,7 +215,7 @@ Controller.prototype.if_wins = function(last_cell) {
     }, {
       x: x,
       y: 2
-    }], this.table.getEmptyCells());
+    }], this.data_storage.getEmptyCells());
     return player;
   } else if (player == all[0][y] && all[0][y] == all[1][y] && all[1][y] == all[2][y]) {
     this.ui.end(player, [{
@@ -245,17 +227,18 @@ Controller.prototype.if_wins = function(last_cell) {
     }, {
       x: 2,
       y: y
-    }], this.table.getEmptyCells());
+    }], this.data_storage.getEmptyCells());
     return player;
   };
+  // check if it still has free space, if not then it's a tie
   for (var i = 0; i < all.length; i++) {
     for (var j = 0; j < all.length; j++) {
       if (all[i][j] == null) {
-        return null;
+        return "nah";
       }
     };
   };
-  // return null if no one wins
+  // it's a tie!
   this.ui.end("tie", [], []);
   return "tie";
 };
